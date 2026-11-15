@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elevon – Train like a beast | Lewe Tech Oy</title>
+<meta name="description" content="Elevon is a fitness app by Lewe Tech Oy: workout programs, exercise guides, custom workouts, streaks, nutrition and sleep tracking. No sign-up. Just train.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040815;--bg2:#070d1f;--card:rgba(17,26,51,.62);--line:rgba(120,160,255,.14);
+  --text:#eef3ff;--muted:#93a3c4;--cyan:#22d3ee;--blue:#3b82f6;--indigo:#6366f1;
+  --grad:linear-gradient(95deg,#3ee0ff 0%,#3b82f6 55%,#6366f1 100%);
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:var(--cyan);text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.display{font-family:"Barlow Condensed",Impact,sans-serif;font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.9}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 28px rgba(59,130,246,.45))}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#7dd3fc;border:1px solid rgba(96,165,250,.35);background:rgba(30,58,138,.25);padding:8px 18px;border-radius:99px}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+
+/* background */
+.sky{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(900px 600px at 80% -10%,rgba(59,130,246,.22),transparent 60%),
+  radial-gradient(700px 500px at -10% 30%,rgba(34,211,238,.10),transparent 60%),
+  radial-gradient(800px 600px at 50% 120%,rgba(99,102,241,.16),transparent 60%),var(--bg)}
+.sky::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.55) 1px,transparent 1.2px);background-size:140px 140px;opacity:.12;mask-image:linear-gradient(#000,transparent 85%)}
+
+/* nav */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(4,8,21,.72);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text)}
+.brand img{width:38px;height:38px;border-radius:10px;box-shadow:0 0 20px rgba(34,211,238,.35)}
+.brand b{font-family:"Barlow Condensed";font-style:italic;font-weight:800;font-size:26px;letter-spacing:.14em}
+.brand small{display:block;font-size:11px;color:var(--muted);letter-spacing:.06em;margin-top:-4px}
+nav{display:flex;align-items:center;gap:30px}
+nav a{color:var(--muted);font-size:14.5px;font-weight:500;transition:color .2s}
+nav a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;border-radius:14px;padding:13px 22px;transition:transform .2s,box-shadow .2s}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 30px -8px rgba(59,130,246,.7)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 38px -8px rgba(59,130,246,.85)}
+nav .btn{padding:10px 18px;font-size:14px;color:#fff}
+
+/* hero */
+.hero{padding:90px 0 60px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(68px,9vw,128px);margin:26px 0 22px}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:520px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 34px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;padding:9px 15px;border-radius:99px;background:rgba(30,58,138,.28);border:1px solid rgba(96,165,250,.3);color:#dbeafe}
+.chip svg{width:15px;height:15px;color:var(--cyan)}
+.stores{display:flex;flex-wrap:wrap;gap:14px}
+.store{display:flex;align-items:center;gap:12px;padding:11px 20px 11px 16px;border-radius:14px;background:#0b1226;border:1px solid var(--line);color:var(--text)}
+.store svg{width:26px;height:26px}
+.store small{display:block;font-size:10.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.store b{font-size:16px;font-weight:600;line-height:1.1}
+.hero-art{position:relative;justify-self:center}
+.hero-art::before{content:"";position:absolute;inset:8% -6%;background:radial-gradient(closest-side,rgba(59,130,246,.55),transparent);filter:blur(30px);z-index:-1}
+.hero-art img{width:min(420px,88vw);border-radius:30px;border:1px solid rgba(120,170,255,.25);box-shadow:0 40px 90px -20px rgba(0,0,0,.8),0 0 0 8px rgba(20,35,80,.35);animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-14px) rotate(.6deg)}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:70px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.stat b{font-family:"Barlow Condensed";font-style:italic;font-weight:900;font-size:44px;line-height:1;display:block}
+.stat span{color:var(--muted);font-size:14px}
+
+/* sections */
+section{padding:110px 0;position:relative}
+.head{text-align:center;max-width:720px;margin:0 auto 64px}
+.head h2{font-size:clamp(48px,6vw,82px);margin:22px 0 16px}
+.head p{color:var(--muted);font-size:18px}
+
+/* feature grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.f{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .25s,border-color .25s}
+.f:hover{transform:translateY(-4px);border-color:rgba(96,165,250,.45)}
+.f .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(140deg,rgba(34,211,238,.18),rgba(99,102,241,.22));border:1px solid rgba(96,165,250,.35);margin-bottom:18px}
+.f .ic svg{width:22px;height:22px;color:#7dd3fc}
+.f h3{font-size:17px;margin-bottom:6px}
+.f p{font-size:14.5px;color:var(--muted)}
+
+/* showcase rows */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;padding:60px 0}
+.row.rev .txt{order:2}
+.row .txt h3{font-size:clamp(46px,5vw,72px);margin:20px 0 18px}
+.row .txt p{color:var(--muted);font-size:17.5px;max-width:470px}
+.row ul{list-style:none;margin-top:24px;display:grid;gap:11px}
+.row li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:#cfdbf5}
+.row li svg{flex:none;width:20px;height:20px;margin-top:2px;color:var(--cyan)}
+.shot{position:relative;justify-self:center}
+.shot::before{content:"";position:absolute;inset:12% 4%;background:radial-gradient(closest-side,rgba(59,130,246,.45),transparent);filter:blur(36px);z-index:-1}
+.shot img{width:min(380px,82vw);border-radius:26px;border:1px solid rgba(120,170,255,.22);box-shadow:0 30px 80px -20px rgba(0,0,0,.85);cursor:zoom-in;transition:transform .35s}
+.shot img:hover{transform:scale(1.02)}
+
+/* gallery */
+.gallery{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 28px 30px;scrollbar-width:thin;scrollbar-color:#1e3a8a transparent}
+.gallery img{flex:none;width:250px;border-radius:20px;border:1px solid var(--line);scroll-snap-align:center;cursor:zoom-in;transition:transform .3s,border-color .3s}
+.gallery img:hover{transform:translateY(-6px);border-color:rgba(96,165,250,.5)}
+.gal-wrap{max-width:1400px;margin:0 auto}
+
+/* privacy band */
+.band{background:linear-gradient(135deg,rgba(30,64,175,.35),rgba(67,56,202,.25));border:1px solid rgba(96,165,250,.3);border-radius:30px;padding:56px;display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+.band h2{font-size:clamp(44px,5vw,70px);margin:20px 0 14px}
+.band p{color:#c7d5f2;font-size:17px}
+.checks{display:grid;gap:14px}
+.check{display:flex;gap:14px;align-items:center;background:rgba(4,8,21,.45);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.check svg{width:24px;height:24px;flex:none;color:var(--cyan)}
+.check b{display:block;font-size:15.5px}
+.check span{font-size:13.5px;color:var(--muted)}
+
+/* faq */
+.faq{max-width:800px;margin:0 auto;display:grid;gap:12px}
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 24px}
+summary{cursor:pointer;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--cyan);font-size:22px;line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--muted);margin-top:12px;font-size:15px}
+
+/* policy */
+.policy{max-width:820px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:50px}
+.policy h2{font-size:46px;margin-bottom:6px}
+.policy .date{color:var(--muted);font-size:14px;margin-bottom:24px}
+.policy h3{font-size:18px;margin:30px 0 8px}
+.policy p,.policy li{color:#b8c6e3;font-size:15.5px}
+.policy ul{margin:10px 0 0 22px;display:grid;gap:6px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.contact div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px}
+.contact small{display:block;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#7dd3fc;margin-bottom:10px}
+.contact p{font-size:17px}
+
+footer{border-top:1px solid var(--line);padding:40px 0;margin-top:40px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:14px}
+footer nav{gap:22px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(2,5,14,.92);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:30px}
+.lb.on{display:flex}
+.lb img{max-height:92vh;max-width:92vw;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.8)}
+.lb button{position:absolute;background:rgba(30,58,138,.5);border:1px solid var(--line);color:#fff;width:50px;height:50px;border-radius:50%;font-size:22px;cursor:pointer}
+.lb .x{top:22px;right:22px}.lb .p{left:22px}.lb .n{right:22px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:960px){
+  .hero .wrap,.row,.band{grid-template-columns:1fr}
+  .row.rev .txt{order:0}
+  .grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .contact{grid-template-columns:1fr}
+  nav a:not(.btn){display:none}
+  .band,.policy{padding:32px}
+  section{padding:80px 0}
+}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero{padding-top:50px}}
+@media(prefers-reduced-motion:reduce){.hero-art img{animation:none}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="sky"></div>
+
+<header><div class="wrap">
+  <a class="brand" href="#top"><img src="icon.png" alt="Elevon icon"><div><b>ELEVON</b><small>by Lewe Tech Oy</small></div></a>
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#screens">Screens</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#contact">Contact</a>
+    <a class="btn btn-primary" href="#download">Get Elevon</a>
+  </nav>
+</div></header>
+
+<main id="top">
+<!-- HERO -->
+<div class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow"><i></i>Fitness app · iOS &amp; Android</span>
+    <h1 class="display">Train like<br><span class="grad">a beast</span></h1>
+    <p class="lead">Elevon puts workout programs, exercise guides, nutrition and sleep tracking in one fast app. No sign-up and no account required. Open it and start training.</p>
+    <div class="chips">
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>No sign-up</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>No ads</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Your data stays on your phone</span>
+    </div>
+    <div class="stores" id="download">
+      <div class="store"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM13.9 4.9c.7-.9 1.2-2 1-3.2-1 0-2.2.7-3 1.6-.6.7-1.2 1.9-1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg><div><small>Coming soon on the</small><b>App Store</b></div></div>
+      <div class="store"><svg viewBox="0 0 24 24"><path fill="#34d399" d="M3.6 2.2 13.4 12l-9.8 9.8c-.4-.2-.6-.7-.6-1.2V3.4c0-.5.2-1 .6-1.2z"/><path fill="#fbbf24" d="m16.8 15.4-3.4-3.4 3.4-3.4 3.9 2.2c1.1.6 1.1 1.7 0 2.3z"/><path fill="#f87171" d="M16.8 15.4 13.4 12l-9.8 9.8c.4.2.9.2 1.4-.1z"/><path fill="#60a5fa" d="M16.8 8.6 5 2.3c-.5-.3-1-.3-1.4-.1l9.8 9.8z"/></svg><div><small>Coming soon on</small><b>Google Play</b></div></div>
+    </div>
+  </div>
+  <div class="hero-art"><img src="s1.webp" alt="Elevon home screen with workout programs" data-i="0"></div>
+</div>
+<div class="wrap">
+  <div class="stats rv">
+    <div class="stat"><b class="grad">8+</b><span>tools in one app</span></div>
+    <div class="stat"><b class="grad">0</b><span>accounts or sign-ups</span></div>
+    <div class="stat"><b class="grad">100%</b><span>of your logs stay on your device</span></div>
+    <div class="stat"><b class="grad">24/7</b><span>works offline at the gym</span></div>
+  </div>
+</div></div>
+
+<!-- FEATURES GRID -->
+<section id="features"><div class="wrap">
+  <div class="head rv">
+    <span class="eyebrow"><i></i>Everything you need</span>
+    <h2 class="display">One app.<br><span class="grad">Every goal.</span></h2>
+    <p>Elevon covers training, recovery and nutrition, so the whole routine lives in one app.</p>
+  </div>
+  <div class="grid">
+    <div class="f rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/></svg></div><h3>Workout programs</h3><p>Ready-made plans for strength, speed, abs and more, including the 30-day abs challenge.</p></div>
+    <div class="f rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M12 7v6m0 0-3 7m3-7 3 7M7 10h10"/></svg></div><h3>Exercise guides</h3><p>Visual guides that show exactly which muscles each move works.</p></div>
+    <div class="f rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Elevon Coach</h3><p>A personal motivator that cheers you on, available whenever you need a push.</p></div>
+    <div class="f rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div><h3>Custom workouts</h3><p>Build your own sessions with exercises, reps and weight, and keep a full history.</p></div>
+    <div class="f rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c4 0 7-3 7-7 0-5-5-7-5-12-3 2-5 5-5 8-1-1-2-2-2-3-1 2-2 4-2 7 0 4 3 7 7 7z"/></svg></div><h3>Daily streaks</h3><p>Check in every day, build your streak and keep track of your best run.</p></div>
+    <div class="f rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v20M4 2v6a3 3 0 0 0 6 0V2M17 2c-2 0-3 3-3 7h3v13"/></svg></div><h3>Nutrition</h3><p>Calorie goals for fat loss, maintenance or muscle gain, plus meals with full macros.</p></div>
+    <div class="f rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg></div><h3>Sleep tracking</h3><p>Log sleep quality, mood on waking and habits, then see your weekly sleep score.</p></div>
+    <div class="f rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h3>Progress analysis</h3><p>See how your training develops over time, session by session.</p></div>
+  </div>
+</div></section>
+
+<!-- SHOWCASE -->
+<section style="padding-top:20px"><div class="wrap">
+  <div class="row rv">
+    <div class="txt"><span class="eyebrow"><i></i>Strength program</span>
+      <h3 class="display">Build real <span class="grad">strength</span></h3>
+      <p>Classic 5×5 training built on the big lifts. Open a program, hit Start Workout and follow along set by set.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Squat, bench press and barbell row</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Estimated calories for every session</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Programs for every goal and level</li>
+      </ul></div>
+    <div class="shot"><img src="s2.webp" alt="5x5 strength workout screen" data-i="1" loading="lazy"></div>
+  </div>
+
+  <div class="row rev rv">
+    <div class="txt"><span class="eyebrow"><i></i>Exercise guides</span>
+      <h3 class="display">Master <span class="grad">every move</span></h3>
+      <p>Each exercise comes with a clear visual guide that highlights the muscles you are working, so your form stays right from day one.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Back, chest, full body, core and speed</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Built-in timer and sound cues</li>
+      </ul></div>
+    <div class="shot"><img src="s3.webp" alt="Exercise guide screen" data-i="2" loading="lazy"></div>
+  </div>
+
+  <div class="row rv">
+    <div class="txt"><span class="eyebrow"><i></i>Elevon Coach</span>
+      <h3 class="display">Your personal <span class="grad">motivator</span></h3>
+      <p>Low on energy? Tap Motivate me. Elevon Coach works like a personal trainer cheering you on, and it runs entirely on your phone.</p></div>
+    <div class="shot"><img src="s4.webp" alt="Elevon Coach motivator screen" data-i="3" loading="lazy"></div>
+  </div>
+
+  <div class="row rev rv">
+    <div class="txt"><span class="eyebrow"><i></i>Custom workouts</span>
+      <h3 class="display">Build your <span class="grad">own workout</span></h3>
+      <p>Add exercises, reps and weight, choose the date and save the session to your history. Every rep is tracked.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Kilograms or pounds</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Full workout history</li>
+      </ul></div>
+    <div class="shot"><img src="s5.webp" alt="Custom workout builder screen" data-i="4" loading="lazy"></div>
+  </div>
+
+  <div class="row rv">
+    <div class="txt"><span class="eyebrow"><i></i>Daily streak</span>
+      <h3 class="display">Never miss <span class="grad">a day</span></h3>
+      <p>Check in daily and watch your streak grow. Active days, missed days and your best streak are visible at a glance.</p></div>
+    <div class="shot"><img src="s6.webp" alt="Fitness streak screen" data-i="5" loading="lazy"></div>
+  </div>
+
+  <div class="row rev rv">
+    <div class="txt"><span class="eyebrow"><i></i>Nutrition</span>
+      <h3 class="display">Fuel your <span class="grad">gains</span></h3>
+      <p>Pick a calorie goal (fat loss, maintain, muscle gain or custom) and log meals with full macros for protein, carbs and fat.</p></div>
+    <div class="shot"><img src="s7.webp" alt="Nutrition and calorie goal screen" data-i="6" loading="lazy"></div>
+  </div>
+
+  <div class="row rv">
+    <div class="txt"><span class="eyebrow"><i></i>Sleep tracking</span>
+      <h3 class="display">Recover <span class="grad">like a pro</span></h3>
+      <p>Rate your sleep, note how many times you woke up and log your mood and habits. A weekly sleep score shows how well you are recovering.</p></div>
+    <div class="shot"><img src="s8.webp" alt="Sleep tracking screen" data-i="7" loading="lazy"></div>
+  </div>
+</div></section>
+
+<!-- GALLERY -->
+<section id="screens" style="padding-top:40px"><div class="wrap"><div class="head rv">
+  <span class="eyebrow"><i></i>Screenshots</span>
+  <h2 class="display">See it in <span class="grad">action</span></h2>
+  <p>Tap any screen to enlarge it.</p></div></div>
+  <div class="gal-wrap"><div class="gallery" id="gal"></div></div>
+</section>
+
+<!-- PRIVACY BAND -->
+<section style="padding-top:40px"><div class="wrap">
+  <div class="band rv">
+    <div><span class="eyebrow"><i></i>Privacy first</span>
+      <h2 class="display">No sign-up.<br><span class="grad">Just train.</span></h2>
+      <p>Elevon does not use accounts, logins or ads. Your workouts, meals and sleep logs stay on your own phone.</p></div>
+    <div class="checks">
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg><div><b>Stored on your device</b><span>Training, nutrition and sleep data never leave your phone.</span></div></div>
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/><path d="M3 3l18 18"/></svg><div><b>No account needed</b><span>No email, password or profile to create.</span></div></div>
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 3l18 18"/></svg><div><b>No ads</b><span>A clean, distraction-free experience.</span></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section style="padding-top:40px"><div class="wrap">
+  <div class="head rv"><span class="eyebrow"><i></i>FAQ</span><h2 class="display">Questions?</h2></div>
+  <div class="faq rv">
+    <details><summary>Do I need to create an account?</summary><p>No. Elevon works without any sign-up. Download the app and start training.</p></details>
+    <details><summary>Where is my data stored?</summary><p>Your workouts, progress, nutrition and sleep logs are stored locally on your device. If you delete the app, that data is deleted too.</p></details>
+    <details><summary>Is Elevon Coach a real AI?</summary><p>Elevon Coach is a built-in motivator that runs entirely on your phone. It does not send your messages anywhere.</p></details>
+    <details><summary>Which platforms are supported?</summary><p>Elevon is coming to iPhone (App Store) and Android (Google Play).</p></details>
+    <details><summary>How do I contact support?</summary><p>Email us at <a href="mailto:lenni@lewetech.info">lenni@lewetech.info</a>. We usually reply within a couple of days.</p></details>
+  </div>
+</div></section>
+
+<!-- PRIVACY POLICY -->
+<section id="privacy" style="padding-top:40px"><div class="wrap">
+  <div class="policy rv">
+    <h2 class="display">Privacy <span class="grad">Policy</span></h2>
+    <p class="date">Elevon mobile app · Last updated 15 November 2026</p>
+    <p>This policy explains how Lewe Tech Oy ("we", "us") handles information in the Elevon mobile app for iOS and Android.</p>
+
+    <h3>1. Data stored on your device</h3>
+    <p>Workouts, custom programs, progress, streaks, nutrition logs, calorie goals and sleep logs are stored only on your own device. Elevon has no user accounts, and we do not receive or store this data on our servers. The Elevon Coach motivator runs entirely on your device.</p>
+
+    <h3>2. Analytics and crash reports</h3>
+    <p>To keep the app stable and improve it, Elevon uses Google Firebase:</p>
+    <ul>
+      <li><b>Firebase Analytics</b> collects anonymous usage data, such as which screens are opened, app version and general device information.</li>
+      <li><b>Firebase Crashlytics</b> collects crash reports with technical details about the device and the app's state when an error occurred.</li>
+    </ul>
+    <p style="margin-top:10px">This data is not used to identify you personally, is never sold, and is not used for advertising. Google processes it as our service provider. See <a href="https://firebase.google.com/support/privacy">Firebase privacy and security</a>.</p>
+
+    <h3>3. Health and fitness information</h3>
+    <p>Nutrition and sleep entries are health-related information. They are kept only on your device and are not shared with us or any third party.</p>
+
+    <h3>4. Advertising and purchases</h3>
+    <p>Elevon currently shows no ads and has no in-app purchases. If paid features or ads are introduced, this policy will be updated before they are released.</p>
+
+    <h3>5. Children</h3>
+    <p>Elevon is not directed at children under 13, and we do not knowingly collect personal information from them.</p>
+
+    <h3>6. Your rights</h3>
+    <p>Under the EU General Data Protection Regulation (GDPR), you have the right to access, correct or delete data related to you. Deleting the app removes all data stored on your device. For any privacy request, contact us at the address below.</p>
+
+    <h3>7. Changes to this policy</h3>
+    <p>We may update this policy from time to time. The latest version is always available on this page.</p>
+
+    <h3>8. Contact</h3>
+    <p>Lewe Tech Oy, Papinkatu 8, 33200 Tampere, Finland · <a href="mailto:lenni@lewetech.info">lenni@lewetech.info</a></p>
+  </div>
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-top:40px"><div class="wrap">
+  <div class="head rv"><span class="eyebrow"><i></i>About us</span><h2 class="display">Made in <span class="grad">Finland</span></h2>
+    <p>Lewe Tech Oy is a software company based in Tampere, Finland. We design and build mobile apps focused on fitness and everyday wellbeing.</p></div>
+  <div class="contact rv">
+    <div><small>Company</small><p>Lewe Tech Oy</p></div>
+    <div><small>Address</small><p>Papinkatu 8<br>33200 Tampere, Finland</p></div>
+    <div><small>Email</small><p><a href="mailto:lenni@lewetech.info">lenni@lewetech.info</a></p></div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <a class="brand" href="#top"><img src="icon.png" alt=""><div><b>ELEVON</b><small>No sign-up. Just train.</small></div></a>
+  <nav><a href="#features">Features</a><a href="#privacy">Privacy Policy</a><a href="#contact">Contact</a></nav>
+  <span>© 2026 Lewe Tech Oy</span>
+</div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button class="x" aria-label="Close">×</button><button class="p" aria-label="Previous">‹</button>
+  <img id="lbimg" alt=""><button class="n" aria-label="Next">›</button>
+</div>
+
+<script>
+const shots=["s1","s2","s3","s4","s5","s6","s7","s8"].map(s=>""+s+".webp");
+const alts=["Train like a beast","Build real strength","Master every move","Your personal motivator","Build your own workout","Never miss a day","Fuel your gains","Recover like a pro"];
+const gal=document.getElementById("gal");
+shots.forEach((src,i)=>{const im=document.createElement("img");im.src=src;im.alt=alts[i];im.loading="lazy";im.dataset.i=i;gal.appendChild(im)});
+const lb=document.getElementById("lb"),lbimg=document.getElementById("lbimg");let cur=0;
+function show(i){cur=(i+shots.length)%shots.length;lbimg.src=shots[cur];lbimg.alt=alts[cur];lb.classList.add("on")}
+document.addEventListener("click",e=>{const t=e.target;if(t.matches("img[data-i]"))show(+t.dataset.i)});
+lb.querySelector(".x").onclick=()=>lb.classList.remove("on");
+lb.querySelector(".p").onclick=e=>{e.stopPropagation();show(cur-1)};
+lb.querySelector(".n").onclick=e=>{e.stopPropagation();show(cur+1)};
+lb.addEventListener("click",e=>{if(e.target===lb)lb.classList.remove("on")});
+document.addEventListener("keydown",e=>{if(!lb.classList.contains("on"))return;if(e.key==="Escape")lb.classList.remove("on");if(e.key==="ArrowRight")show(cur+1);if(e.key==="ArrowLeft")show(cur-1)});
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
